@@ -2,7 +2,8 @@ TILE_IDS = {
     "red",
     "blue",
     "green",
-    "purple"
+    "purple",
+    "black",
 }
 
 TILE_TYPES = {
@@ -18,4 +19,7 @@ TILE_TYPES = {
     ["purple"] = {
         color = {1, 0, 1},
     },
+    ["black"] = {
+        color = {0, 0, 0},
+    }
 }

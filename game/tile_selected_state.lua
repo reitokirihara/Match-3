@@ -28,6 +28,9 @@ function TileState:keypressed(key)
             board.tiles[cursor.tilePos.y + 1][cursor.tilePos.x + 1].color = board.tiles[cursor.selectedTile.y + 1][cursor.selectedTile.x + 1].color
             board.tiles[cursor.selectedTile.y + 1][cursor.selectedTile.x + 1].color = tempColor
             GameState.pop()
+            board:evaluateMatch()
+            --board:evaluateFalls()
         end
     end
 end
+
