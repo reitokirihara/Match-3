@@ -34,42 +34,34 @@ function Board:manhattan(p1, p2)
 end
 
 function Board:evaluateMatch()
-    for x = 1, TILES_PER_ROW do  
-        for y = 1, TILES_PER_ROW do
+    for y = 1, TILES_PER_ROW do  
+        for x = 1, TILES_PER_ROW do
+            --vertical
             if y + 2 <= TILES_PER_ROW then
-                if self.tiles[x][y].color == self.tiles[x][y + 1].color and self.tiles[x][y + 1].color == self.tiles[x][y + 2].color then
-                    self.tiles[x][y].color = {0,0,0}
-                    self.tiles[x][y].TILE_TYPES = "black"
-                    self.tiles[x][y + 1].color = {0,0,0}
-                    self.tiles[x][y + 1].TILE_TYPES = "black"
-                    self.tiles[x][y + 2].color = {0,0,0}
-                    self.tiles[x][y + 2].TILE_TYPES = "black"
+                if self.tiles[y][x].color == self.tiles[y + 1][x].color and self.tiles[y + 1][x].color == self.tiles[y + 2][x].color then
+                    self:evaluateFalls(vector(x, y+2), 3)
                 end
             end
-            if x + 2 <= TILES_PER_ROW then
-                if self.tiles[x][y].color == self.tiles[x + 1][y].color and self.tiles[x + 1][y].color == self.tiles[x + 2][y].color then
-                    self.tiles[x][y].color = {0,0,0}
-                    self.tiles[x][y].TILE_TYPES = "black"
-                    self.tiles[x + 1][y].color = {0,0,0}
-                    self.tiles[x + 1][y].TILE_TYPES = "black"
-                    self.tiles[x + 2][y].color = {0,0,0}
-                    self.tiles[x + 2][y].TILE_TYPES = "black"
-                end
-            end
+            --horizontal
+            -- if x + 2 <= TILES_PER_ROW then
+            --     if self.tiles[x][y].color == self.tiles[x + 1][y].color and self.tiles[x + 1][y].color == self.tiles[x + 2][y].color then
+            --         self:evaluateFalls(vector(x, y), 1)
+            --         self:evaluateFalls(vector(x + 1, y), 1)
+            --         self:evaluateFalls(vector(x + 2, y), 1)
+            --     end
+            -- end
         end
     end
 end
 
-function Board:evaluateFalls()
-    for x = 1, TILES_PER_ROW do
-        for y = 1, TILES_PER_ROW do
-            if x + 1 <= TILES_PER_ROW then
-                if self.tiles[x + 1][y].TILE_TYPES == "black" then
-                     self.tiles[x + 1][y].color = self.tiles[x][y].color
-                     self.tiles[x][y].color = {0,0,0}
-                     self.tiles[x][y].TILE_TYPES = "black"
-                end  
-            end   
-        end
+function Board:evaluateFalls(pos, offset)
+    print("Falling at "..pos.y-offset)
+    for y = pos.y - offset, 1, -1 do
+        -- self.tiles[y][pos.x].color = self.tiles[y + offset][pos.x].c
+        self.tiles[y + offset][pos.x] = self.tiles[y][pos.x]
+        self.tiles[y + offset][pos.x].tilePos = vector(pos.x-1, y+offset-1)
+        -- print_r(self.tiles[y + offset][pos.x].tilePos)
+        self.tiles[y][pos.x] = Tile(vector(pos.x-1,y-1), TILE_TYPES['black'])
+        -- print_r(self.tiles[y+offset][pos.x].color)
     end 
 end

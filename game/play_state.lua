@@ -28,9 +28,5 @@ function PlayState:keypressed(key)
         cursor.selectedTile = cursor.tilePos
         GameState.push(TileState)
     end
-
-    if key == "x" then
-        board:evaluateFalls()
-    end
 end
 

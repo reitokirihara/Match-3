@@ -3,7 +3,9 @@ require "dependencies"
 function love.load()
     love.window.setTitle("MATCH STUFF")
 
-    io.stdout:setvbuf("no")
+    --io.stdout:setvbuf("no")
+ 
+    print("hi")
     
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {
         fullscreen = false,
