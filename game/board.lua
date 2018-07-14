@@ -39,6 +39,9 @@ function Board:evaluateMatch()
             --vertical
             if y + 2 <= TILES_PER_ROW then
                 if self.tiles[y][x].color == self.tiles[y + 1][x].color and self.tiles[y + 1][x].color == self.tiles[y + 2][x].color then
+                    self.tiles[y][x].color = {0,0,0}
+                    self.tiles[y + 1][x].color = {0,0,0}
+                    self.tiles[y + 2][x].color = {0,0,0}
                     self:evaluateFalls(vector(x, y+2), 3)
                 end
             end
@@ -56,12 +59,14 @@ end
 
 function Board:evaluateFalls(pos, offset)
     print("Falling at "..pos.y-offset)
-    for y = pos.y - offset, 1, -1 do
-        -- self.tiles[y][pos.x].color = self.tiles[y + offset][pos.x].c
-        self.tiles[y + offset][pos.x] = self.tiles[y][pos.x]
-        self.tiles[y + offset][pos.x].tilePos = vector(pos.x-1, y+offset-1)
-        -- print_r(self.tiles[y + offset][pos.x].tilePos)
-        self.tiles[y][pos.x] = Tile(vector(pos.x-1,y-1), TILE_TYPES['black'])
-        -- print_r(self.tiles[y+offset][pos.x].color)
+    local col = {}
+    for y = TILES_PER_ROW, 1, -1 do 
+        if self.tiles[y][pos.x].color ~= {0,0,0} then
+            table.insert(col, self.tiles[y][pos.x].color)
+        end    
+    end
+
+    for i, color in ipairs(col) do
+        self.tiles[TILES_PER_ROW - (i - 1)][pos.x].color = color
     end 
 end

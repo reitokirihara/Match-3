@@ -4,5 +4,8 @@ Tile = Class{
         self.boardPos = vector(self.tilePos.x * TILE_SIZE, self.tilePos.y * TILE_SIZE)
         
         self.color = def.color or {1,1,1}
+    end,
+    setBoardPos = function(self)
+        self.boardPos = vector(self.tilePos.x * TILE_SIZE, self.tilePos.y * TILE_SIZE)
     end
 }

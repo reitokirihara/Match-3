@@ -3,7 +3,7 @@ require "dependencies"
 function love.load()
     love.window.setTitle("MATCH STUFF")
 
-    --io.stdout:setvbuf("no")
+    -- io.stdout:setvbuf("no")
  
     print("hi")
     
@@ -20,9 +20,9 @@ function love.load()
 end
 
 function love.update(dt)
+    
 end
 
 function love.draw()
-   
+   -- love.graphics.print("hi", 100, 100)
 end
-
