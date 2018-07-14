@@ -9,6 +9,10 @@ require "dependencies"
 --combos
 --x matches greater than 3
 ---------------------------------------
+--
+--  GOOD SEEDS
+--===============
+-- 11562
 
 function love.load()
     love.window.setTitle("MATCH STUFF")
@@ -16,7 +20,7 @@ function love.load()
     -- io.stdout:setvbuf("no")
  
     print("hi")
-    love.math.setRandomSeed(love.timer.getTime())
+    love.math.setRandomSeed(11562)
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {
         fullscreen = false,
