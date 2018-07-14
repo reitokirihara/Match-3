@@ -16,3 +16,5 @@ DIR_UP = vector(0, -1)
 DIR_RIGHT = vector(1, 0)
 DIR_DOWN = vector(0, 1)
 DIR_LEFT = vector(-1, 0)
+
+COLOR_BLACK = {0,0,0}

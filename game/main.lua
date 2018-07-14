@@ -1,12 +1,23 @@
 require "dependencies"
 
+
+---------------------------------------
+--no matches at start
+--refill board
+--animation?
+--score
+--combos
+--x matches greater than 3
+---------------------------------------
+
 function love.load()
     love.window.setTitle("MATCH STUFF")
 
     -- io.stdout:setvbuf("no")
  
     print("hi")
-    
+    love.math.setRandomSeed(love.timer.getTime())
+
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {
         fullscreen = false,
         resizable = true,
@@ -24,5 +35,5 @@ function love.update(dt)
 end
 
 function love.draw()
-   -- love.graphics.print("hi", 100, 100)
+   love.graphics.print(love.math.getRandomSeed(), 100, 100)
 end
