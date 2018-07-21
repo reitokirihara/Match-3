@@ -17,7 +17,7 @@ require "dependencies"
 function love.load()
     love.window.setTitle("MATCH STUFF")
 
-    -- io.stdout:setvbuf("no")
+    io.stdout:setvbuf("no")
  
     print("hi")
     love.math.setRandomSeed(11562)
@@ -35,7 +35,7 @@ function love.load()
 end
 
 function love.update(dt)
-    
+    flux.update(dt)
 end
 
 function love.draw()
